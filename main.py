@@ -136,7 +136,7 @@ def create_block() -> dict[str, Any]:
 
 
 def main():
-    all_count = 34
+    all_count = 40
     fav_count = 6
     reg_count = all_count - fav_count
 
