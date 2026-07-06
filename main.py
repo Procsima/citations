@@ -32,6 +32,9 @@ FEMALE_SURNAMES = [
     "Смирнова",
     "Кузнецова",
     "Афанасьева",
+    "Никонова",
+    "Якина",
+    "Земляникина",
 ]
 FEMALE_PATRONYMIC = [
     "Александровна",
@@ -80,9 +83,13 @@ LOREM_SENTENCES = [
 ]
 
 
-def create_name() -> str:
+def create_gender() -> bool:
+    return random.choice([True, False])
+
+
+def create_name(gender: bool) -> str:
     """Генерирует случайное ФИО (мужское или женское)."""
-    if random.choice([True, False]):
+    if gender:
         return f"{random.choice(MALE_SURNAMES)} {random.choice(MALE_NAMES)} {random.choice(MALE_PATRONYMIC)}"
     else:
         return f"{random.choice(FEMALE_SURNAMES)} {random.choice(FEMALE_NAMES)} {random.choice(FEMALE_PATRONYMIC)}"
@@ -93,18 +100,18 @@ def create_desc() -> str:
     components = []
 
     # С определенным шансом добавляем каждый элемент для разнообразия структуры
-    if random.random() > 0.3:
+    if random.random() > 0.1:
         components.append(random.choice(DEGREES))
-    if random.random() > 0.3:
+    if random.random() > 0.2:
         components.append(random.choice(TITLES))
     if random.random() > 0.3:
         components.append(random.choice(POSITIONS))
     if random.random() > 0.4:
         components.append(random.choice(AWARDS))
 
-    # Если ничего не выбралось, гарантированно берем хотя бы должность
+    # Если ничего не выбралось, гарантированно берем хотя бы degree
     if not components:
-        components.append(random.choice(POSITIONS))
+        components.append(random.choice(DEGREES))
 
     return ", ".join(components)
 
@@ -118,10 +125,13 @@ def create_text() -> str:
 
 
 def create_block() -> dict[str, Any]:
+    gender = create_gender()
+
     return {
-        "name": create_name(),
+        "name": create_name(gender),
         "desc": create_desc(),
         "text": create_text(),
+        "img": f"placeholder_{'male' if gender else 'female'}.png",
     }
 
 
