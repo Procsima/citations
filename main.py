@@ -1,5 +1,6 @@
 import json
 import random
+from pathlib import Path
 from typing import Any
 
 # Списки для генерации ФИО
@@ -135,7 +136,7 @@ def create_block() -> dict[str, Any]:
     }
 
 
-def main():
+def generate_random_json():
     all_count = 40
     fav_count = 6
     reg_count = all_count - fav_count
@@ -152,5 +153,9 @@ def main():
         json.dump(cit, file, ensure_ascii=False, indent=4)
 
 
+def generate_real_json(filename: str | Path = "data/data.doc") -> None:
+    return
+
+
 if __name__ == "__main__":
-    main()
+    generate_random_json()
