@@ -17,7 +17,7 @@ def parse_docx(docx_path, images_dir="images"):
             lines.append(text)
 
     # Заготовки для распределения
-    fav_names = ["Васильев", "Козырев", "Ажимов", "Секацкий", "Кирабаев", "Вахитов"]
+    fav_names = ["Васильев", "Козырев", "Ажимов", "Секацкий", "Кирабаев", "Матвейчев"]
     fav_blocks = [None] * len(fav_names)  # Массив-пустышка для сохранения порядка
     reg_blocks = []
 
@@ -49,7 +49,7 @@ def parse_docx(docx_path, images_dir="images"):
 
             # Ищем файл картинки
             img_path = (
-                list(Path(images_dir).glob(f"{'_'.join(fio_parts)}.*"))
+                list(Path(images_dir).glob(f"{'_'.join(fio_parts).lower()}.*"))
                 if Path(images_dir).exists()
                 else []
             )
