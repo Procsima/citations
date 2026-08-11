@@ -49,7 +49,7 @@ def parse_docx(docx_path, images_dir="images"):
 
             # Ищем файл картинки
             img_path = (
-                list(Path(images_dir).glob(f"{'_'.join(fio_parts).lower()}.*"))
+                list(Path(images_dir).glob(f"{' '.join(fio_parts)}.*"))
                 if Path(images_dir).exists()
                 else []
             )
