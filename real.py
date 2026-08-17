@@ -34,7 +34,7 @@ def parse_docx(docx_path, images_dir="images"):
             while i < len(lines) and not lines[i].isdigit():
                 quote_lines.append(lines[i])
                 i += 1
-            quote_text = " ".join(quote_lines)
+            # quote_text = " ".join(quote_lines)
 
             # Определяем пол и имя картинки
             fio_parts = fio.split()
@@ -56,11 +56,12 @@ def parse_docx(docx_path, images_dir="images"):
             img_name = img_path[0].name if img_path else gender_placeholder
 
             # Формируем готовый блок
-            block = {"name": fio, "desc": desc, "text": quote_text, "img": img_name}
+            block = {"name": fio, "desc": desc, "text": quote_lines, "img": img_name}
 
             # Распределяем по спискам
             if last_name in fav_names:
-                fav_blocks[fav_names.index(last_name)] = block
+                if last_name in fav_names:
+                    fav_blocks[fav_names.index(last_name)] = block
             else:
                 reg_blocks.append(block)
         else:
