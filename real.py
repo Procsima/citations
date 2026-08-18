@@ -62,8 +62,8 @@ def parse_docx(docx_path, images_dir="images"):
             if last_name in fav_names:
                 if last_name in fav_names:
                     fav_blocks[fav_names.index(last_name)] = block
-            else:
-                reg_blocks.append(block)
+            # else:
+            reg_blocks.append(block)
         else:
             i += 1
 
